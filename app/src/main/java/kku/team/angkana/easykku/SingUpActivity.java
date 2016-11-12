@@ -1,6 +1,10 @@
 package kku.team.angkana.easykku;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.support.v4.graphics.BitmapCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +21,7 @@ public class SingUpActivity extends AppCompatActivity {
     private ImageView imageView;
     private Button button;
     private String nameString, phonString, userString, passwordString;
+    private Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +90,20 @@ public class SingUpActivity extends AppCompatActivity {
         if ((requestCode == 0) && (resultCode == RESULT_OK)) {
 
             Log.d("12novV1", "Result OK");
+
+            // show image
+            uri = data.getData();
+            try {
+
+                Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver()
+                        .openInputStream(uri));
+                imageView.setImageBitmap(bitmap);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
         }   // if
 
