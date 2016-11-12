@@ -1,9 +1,11 @@
 package kku.team.angkana.easykku;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.graphics.BitmapCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +22,8 @@ public class SingUpActivity extends AppCompatActivity {
             userEditText, passwordEditText;
     private ImageView imageView;
     private Button button;
-    private String nameString, phonString, userString, passwordString;
+    private String nameString, phonString, userString, passwordString,
+    imagePathString, imageNameString;
     private Uri uri;
 
     @Override
@@ -104,8 +107,30 @@ public class SingUpActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            //Find Path of Image
+            imagePathString = myFindPath(uri);
+            Log.d("12novV1", "imagePath ==> " + imagePathString);
 
         }   // if
 
     }   // onActivity result
+
+    private String myFindPath(Uri uri) {
+
+        String result = null;
+        String[] strings = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, strings, null, null, null);
+
+        if (cursor != null) {
+
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            result = cursor.getString(index);
+
+        } else {
+            result = uri.getPath();
+        }
+
+        return result;
+    }
 }   // Main Class
