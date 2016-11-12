@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main); //Ctrl+คลิก วาปหน้า
 
         //Bind Widget
-        signInButton = (Button) findViewById(R.id.button); //Alt + enter  -> Catch
-        signUpButton = (Button) findViewById(R.id.button2);
+        signInButton = (Button) findViewById(R.id.button2); //Alt + enter  -> Catch
+        signUpButton = (Button) findViewById(R.id.button);
 
         //Sing Up Controller
         signUpButton.setOnClickListener(new View.OnClickListener() {
