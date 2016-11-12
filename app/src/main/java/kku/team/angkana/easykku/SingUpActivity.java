@@ -111,6 +111,10 @@ public class SingUpActivity extends AppCompatActivity {
             imagePathString = myFindPath(uri);
             Log.d("12novV1", "imagePath ==> " + imagePathString);
 
+            //Find Name of image
+            imageNameString = imagePathString.substring(imagePathString.lastIndexOf("/"));
+            Log.d("12novV1", "image ==> " + imageNameString);
+
         }   // if
 
     }   // onActivity result
