@@ -25,6 +25,7 @@ public class SingUpActivity extends AppCompatActivity {
     private String nameString, phonString, userString, passwordString,
     imagePathString, imageNameString;
     private Uri uri;
+    private boolean aBoolean = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +62,16 @@ public class SingUpActivity extends AppCompatActivity {
                             "มีช่องว่าง", "กรุณากรอกให้ครบทุกช่องครับ");
                     myAlert.myDialog();
 
-                }
+                } else if (aBoolean) {
+                    //Non Choose Image
+                    MyAlert myAlert = new MyAlert(SingUpActivity.this, R.drawable.nobita48,
+                            "ยังไม่เลื่อกรูป", "กรุณาเลือกรูปครับ");
+                    myAlert.myDialog();
 
+                } else {
+                    //choose Image OK
+                    upLoadImageToServer();
+                }
 
             }   //onClick
         });
@@ -84,6 +93,10 @@ public class SingUpActivity extends AppCompatActivity {
 
     }   // Main Method
 
+    private void upLoadImageToServer() {
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode,
                                     int resultCode,
@@ -93,6 +106,7 @@ public class SingUpActivity extends AppCompatActivity {
         if ((requestCode == 0) && (resultCode == RESULT_OK)) {
 
             Log.d("12novV1", "Result OK");
+            aBoolean = false;
 
             // show image
             uri = data.getData();
